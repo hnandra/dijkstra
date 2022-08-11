@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hanan\\source\\repos\\dijkstras algorithm\\dijkstra.csproj",
+      "projectUniqueName": "C:\\Users\\Hanan\\Documents\\GitHub\\dijkstra\\dijkstra.csproj",
       "projectName": "dijkstra",
-      "projectPath": "C:\\Users\\Hanan\\source\\repos\\dijkstras algorithm\\dijkstra.csproj",
+      "projectPath": "C:\\Users\\Hanan\\Documents\\GitHub\\dijkstra\\dijkstra.csproj",
       "packagesPath": "C:\\Users\\Hanan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Hanan\\source\\repos\\dijkstras algorithm\\obj\\",
+      "outputPath": "C:\\Users\\Hanan\\Documents\\GitHub\\dijkstra\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

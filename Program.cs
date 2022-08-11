@@ -20,7 +20,7 @@ namespace dijkstra
         // visited.
         static HashSet<string> unvisited = new HashSet<string>();
 
-        const string graphFilePath = "C:/Users/Hanan/source/repos/dijkstras algorithm/graph.txt";
+        const string graphFilePath = "./graph.txt";
 
         static void Main(string[] args)
         {

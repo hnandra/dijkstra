@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "r84h8t7kyQRZrdOuAIb8pkY2wP3c5O+bpiUNAiaYiUDZ38kBu0c5TJWsOIcJ4a/FYkrYCoQRwoYIT6WV8dKKFg==",
+  "dgSpecHash": "KPyG7W0fUUCnH+lZPu8p515w9GvdGZ+ICD40sqbS0gkEtEYX2CAFfC3JwR5CmCtktukNATVAV5S+UpLAdmmSww==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Hanan\\source\\repos\\dijkstras algorithm\\dijkstra.csproj",
+  "projectFilePath": "C:\\Users\\Hanan\\Documents\\GitHub\\dijkstra\\dijkstra.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
