@@ -10,13 +10,23 @@ namespace dijkstra
     {
         public double parcelWeight { get; set; }
         public string parcelSize { get; set; }
-        public string parcelType { get; set; }
+        public ParcelType parcelType { get; set; }
 
-        public Parcel(double parcelWeight, string parcelSize, string parcelType)
+        public enum ParcelType
+        {
+            Weapons = 1,
+            CautiousParcels = 2,
+            RefrigeratedGoods = 3
+
+        }
+
+        public Parcel(double parcelWeight, string parcelSize, ParcelType parcelType)
         {
             this.parcelWeight = parcelWeight;
             this.parcelSize = parcelSize;
             this.parcelType = parcelType;
         }
+
+
     }
 }

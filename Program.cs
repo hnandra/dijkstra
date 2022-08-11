@@ -1,6 +1,7 @@
 ﻿// Author(s): Michael Koeppl
 
 using System.Text;
+using static dijkstra.Parcel;
 
 namespace dijkstra
 {
@@ -58,13 +59,35 @@ namespace dijkstra
 
         private static Parcel GetParcelSpecification()
         {
-            Console.WriteLine("Parcel size: [A, B, C]");
-            string size = Console.ReadLine();
-            Console.WriteLine("Parcel weight: [Kilograms]");
-            double weight = double.Parse(Console.ReadLine());
-            Console.WriteLine("Parcel type: [Weapons, Cautious parcels, Refrigerated goods]");
-            string type = Console.ReadLine();
+            string size = "";
+            double weight = 0;
+            ParcelType type = 0;
 
+
+            while (String.IsNullOrEmpty(size)) 
+            {
+                Console.WriteLine("Parcel size: [A, B, C]");
+                size = Console.ReadLine().ToUpper();
+            }
+
+            Console.WriteLine("Parcel weight: [Kilograms]");
+            while (!double.TryParse(Console.ReadLine(),out weight))
+            {
+                Console.WriteLine("Please enter a number");
+                Console.WriteLine("Parcel weight: [Kilograms]");
+            }
+
+            Console.WriteLine("Parcel type: [Weapons = 1, Cautious parcels = 2, Refrigerated goods = 3]");
+            while (!Enum.IsDefined(typeof(ParcelType), type))
+            {
+                while (!Enum.TryParse(Console.ReadLine(), out type))
+                {
+                    Console.WriteLine("Please enter a number");
+                    Console.WriteLine("Parcel type: [Weapons = 1, Cautious parcels = 2, Refrigerated goods = 3]");
+                }
+                Console.WriteLine("Please enter a number from 1 to 3");
+                Console.WriteLine("Parcel type: [Weapons = 1, Cautious parcels = 2, Refrigerated goods = 3]");
+            }
             Parcel parcel = new Parcel(weight, size, type);
 
             return parcel;
@@ -118,6 +141,10 @@ namespace dijkstra
             if (!nodeDict.ContainsKey(node))
             {
                 Console.WriteLine("City is not available by plane.");
+                return false;
+            } else if (node == "")
+            {
+                Console.WriteLine("Please enter a city.");
                 return false;
             }
             return true;
@@ -260,13 +287,13 @@ namespace dijkstra
 
             switch (parcel.parcelType)
             {
-                case "Weapons":
+                case ParcelType.Weapons:
                     cost *= 2;
                     break;
-                case "Cautious parcels":
+                case ParcelType.CautiousParcels:
                     cost *= 1.75;
                     break;
-                case "Refrigerated goods":
+                case ParcelType.RefrigeratedGoods:
                     cost *= 1.1;
                     break;
             }
