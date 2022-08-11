@@ -39,6 +39,8 @@ namespace dijkstra
 
             var (startNode, destNode) = GetStartAndEnd();
 
+
+
             // Set our start node. The start node has to have a value
             // of 0 because we're already there.
             nodeDict[startNode].Value = 0;
@@ -54,13 +56,20 @@ namespace dijkstra
             PrintShortestPath(startNode, destNode, parcel);
         }
 
+        private static void CheckNode(String node)
+        {
+            if (!nodeDict.ContainsKey(node))
+            {
+                Console.WriteLine("City is not available by plane.");
+            }
+        }
+
         private static Parcel GetParcelSpecification()
         {
             Console.WriteLine("Parcel size: [A, B, C]");
             string size = Console.ReadLine();
-            Console.WriteLine("Parcel weight: [number]");
-            double weight = int.Parse(Console.ReadLine());
-            Console.ReadLine();
+            Console.WriteLine("Parcel weight: [Kilograms]");
+            double weight = double.Parse(Console.ReadLine());
             Console.WriteLine("Parcel type: [Weapons, Cautious parcels, Refrigerated goods]");
             string type = Console.ReadLine();
 
@@ -99,27 +108,31 @@ namespace dijkstra
 
         private static void PrintOverview()
         {
-            Console.WriteLine("Nodes:");
+            Console.WriteLine("Cities:");
             foreach (Node node in nodeDict.Values)
             {
                 Console.WriteLine("\t" + node.Name);
             }
-
+/*
             Console.WriteLine("\nRoutes:");
             foreach (Route route in routes)
             {
                 Console.WriteLine("\t" + route.From + " -> " + route.To + " Distance: " + route.Distance);
             }
+*/
         }
 
         // Get user input for the start and destionation nodes.
         private static (string, string) GetStartAndEnd()
         {
-            Console.WriteLine("\nEnter the start node: ");
-            string startNode = Console.ReadLine();
-            Console.WriteLine("Enter the destination node: ");
-            string destNode = Console.ReadLine();
-            return (startNode, destNode);
+
+                Console.WriteLine("\nEnter the start node: ");
+                String startNode = Console.ReadLine();
+                CheckNode(startNode);
+                Console.WriteLine("Enter the destination node: ");
+                String destNode = Console.ReadLine();
+                CheckNode(destNode);
+                return (startNode, destNode);
         }
 
         // Called for each node in the graph and iterates over its directly
@@ -181,8 +194,8 @@ namespace dijkstra
         private static void PrintShortestPath(string startNode, string destNode, Parcel parcel)
         {
             var pathList = new List<String> { destNode };
-
             Node currentNode = nodeDict[destNode];
+
             while (currentNode != nodeDict[startNode])
             {
                 pathList.Add(currentNode.PreviousNode.Name);
@@ -201,65 +214,48 @@ namespace dijkstra
             var deliveryCost = parcelCost * costPerFlight;
 
 
-            Console.WriteLine("Overall cost: " + deliveryCost);
+            Console.WriteLine("Overall cost: $" + deliveryCost);
         }
 
         private static double CalculateParcelCost(Parcel parcel)
         {
-            var cost = 0d;
+            double cost = 0;
 
-            if (parcel.parcelSize == "A" && parcel.parcelWeight < 1)
+            switch (parcel.parcelWeight)
             {
-                cost = cost + 40;
-            }
-            if (parcel.parcelSize == "A" && parcel.parcelWeight is >= 1 and < 5)
-            {
-                cost = cost + 60;
-            }
-            if (parcel.parcelSize == "A" && parcel.parcelWeight >= 5)
-            {
-                cost = cost + 80;
+                case >= 1 and < 5:
+                    cost += 20;
+                    break;
+                case > 5:
+                    cost += 40;
+                    break;
             }
 
-            if (parcel.parcelSize == "B" && parcel.parcelWeight < 1)
+            switch (parcel.parcelSize)
             {
-                cost = cost + 48;
-            }
-            if (parcel.parcelSize == "B" && parcel.parcelWeight is >= 1 and < 5)
-            {
-                cost = cost + 68;
-            }
-            if (parcel.parcelSize == "B" && parcel.parcelWeight >= 5)
-            {
-                cost = cost + 88;
-            }
-
-            if (parcel.parcelSize == "C" && parcel.parcelWeight < 1)
-            {
-                cost = cost + 80;
-            }
-            if (parcel.parcelSize == "C" && parcel.parcelWeight is >= 1 and < 5)
-            {
-                cost = cost + 100;
-            }
-            if (parcel.parcelSize == "C" && parcel.parcelWeight >= 5)
-            {
-                cost = cost + 120;
+                case "A":
+                    cost += 40;
+                    break;
+                case "B":
+                    cost += 48;
+                    break;
+                case "C":
+                    cost += 80;
+                    break;
             }
 
             if (parcel.parcelType == "Weapons")
             {
-                cost = cost * 2;
+                cost *= 2;
             }
             if (parcel.parcelType == "Cautious parcels")
             {
-                cost = cost * 1.75;
+                cost *= 1.75;
             }
             if (parcel.parcelType == "Refrigerated goods")
             {
-                cost = cost * 1.1;
+                cost *= 1.1;
             }
-
 
             return cost;
         }
