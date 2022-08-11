@@ -56,14 +56,6 @@ namespace dijkstra
             PrintShortestPath(startNode, destNode, parcel);
         }
 
-        private static void CheckNode(String node)
-        {
-            if (!nodeDict.ContainsKey(node))
-            {
-                Console.WriteLine("City is not available by plane.");
-            }
-        }
-
         private static Parcel GetParcelSpecification()
         {
             Console.WriteLine("Parcel size: [A, B, C]");
@@ -73,8 +65,8 @@ namespace dijkstra
             Console.WriteLine("Parcel type: [Weapons, Cautious parcels, Refrigerated goods]");
             string type = Console.ReadLine();
 
-
             Parcel parcel = new Parcel(weight, size, type);
+
             return parcel;
         }
 
@@ -113,26 +105,48 @@ namespace dijkstra
             {
                 Console.WriteLine("\t" + node.Name);
             }
-/*
-            Console.WriteLine("\nRoutes:");
-            foreach (Route route in routes)
+            /*
+                        Console.WriteLine("\nRoutes:");
+                        foreach (Route route in routes)
+                        {
+                            Console.WriteLine("\t" + route.From + " -> " + route.To + " Distance: " + route.Distance);
+                        }
+            */
+        }
+        private static Boolean CheckNodeInDict(String node)
+        {
+            if (!nodeDict.ContainsKey(node))
             {
-                Console.WriteLine("\t" + route.From + " -> " + route.To + " Distance: " + route.Distance);
+                Console.WriteLine("City is not available by plane.");
+                return false;
             }
-*/
+            return true;
         }
 
         // Get user input for the start and destionation nodes.
         private static (string, string) GetStartAndEnd()
         {
-
-                Console.WriteLine("\nEnter the start node: ");
-                String startNode = Console.ReadLine();
-                CheckNode(startNode);
-                Console.WriteLine("Enter the destination node: ");
-                String destNode = Console.ReadLine();
-                CheckNode(destNode);
-                return (startNode, destNode);
+            String startNode = null;
+            String destNode = null;
+            while (startNode == null)
+            {
+                Console.WriteLine("\nEnter the start city: ");
+                startNode = Console.ReadLine();
+                if (!CheckNodeInDict(startNode))
+                {
+                    startNode = null;
+                }
+            }
+            while (destNode == null)
+            {
+                Console.WriteLine("Enter the destination city: ");
+                destNode = Console.ReadLine();
+                if (!CheckNodeInDict(destNode))
+                {
+                    destNode = null;
+                }
+            }
+            return (startNode, destNode);
         }
 
         // Called for each node in the graph and iterates over its directly
@@ -244,17 +258,17 @@ namespace dijkstra
                     break;
             }
 
-            if (parcel.parcelType == "Weapons")
+            switch (parcel.parcelType)
             {
-                cost *= 2;
-            }
-            if (parcel.parcelType == "Cautious parcels")
-            {
-                cost *= 1.75;
-            }
-            if (parcel.parcelType == "Refrigerated goods")
-            {
-                cost *= 1.1;
+                case "Weapons":
+                    cost *= 2;
+                    break;
+                case "Cautious parcels":
+                    cost *= 1.75;
+                    break;
+                case "Refrigerated goods":
+                    cost *= 1.1;
+                    break;
             }
 
             return cost;
