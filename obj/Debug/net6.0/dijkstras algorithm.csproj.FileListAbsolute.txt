@@ -1,0 +1,15 @@
+C:\Users\Hanan\source\repos\dijkstras algorithm\bin\Debug\net6.0\dijkstras algorithm.exe
+C:\Users\Hanan\source\repos\dijkstras algorithm\bin\Debug\net6.0\dijkstras algorithm.deps.json
+C:\Users\Hanan\source\repos\dijkstras algorithm\bin\Debug\net6.0\dijkstras algorithm.runtimeconfig.json
+C:\Users\Hanan\source\repos\dijkstras algorithm\bin\Debug\net6.0\dijkstras algorithm.dll
+C:\Users\Hanan\source\repos\dijkstras algorithm\bin\Debug\net6.0\dijkstras algorithm.pdb
+C:\Users\Hanan\source\repos\dijkstras algorithm\obj\Debug\net6.0\dijkstras algorithm.csproj.AssemblyReference.cache
+C:\Users\Hanan\source\repos\dijkstras algorithm\obj\Debug\net6.0\dijkstras algorithm.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hanan\source\repos\dijkstras algorithm\obj\Debug\net6.0\dijkstras algorithm.AssemblyInfoInputs.cache
+C:\Users\Hanan\source\repos\dijkstras algorithm\obj\Debug\net6.0\dijkstras algorithm.AssemblyInfo.cs
+C:\Users\Hanan\source\repos\dijkstras algorithm\obj\Debug\net6.0\dijkstras algorithm.csproj.CoreCompileInputs.cache
+C:\Users\Hanan\source\repos\dijkstras algorithm\obj\Debug\net6.0\dijkstras algorithm.dll
+C:\Users\Hanan\source\repos\dijkstras algorithm\obj\Debug\net6.0\refint\dijkstras algorithm.dll
+C:\Users\Hanan\source\repos\dijkstras algorithm\obj\Debug\net6.0\dijkstras algorithm.pdb
+C:\Users\Hanan\source\repos\dijkstras algorithm\obj\Debug\net6.0\dijkstras algorithm.genruntimeconfig.cache
+C:\Users\Hanan\source\repos\dijkstras algorithm\obj\Debug\net6.0\ref\dijkstras algorithm.dll

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace cs_dijkstra
+namespace dijkstra
 {
     class Program
     {
@@ -20,7 +20,7 @@ namespace cs_dijkstra
         // visited.
         static HashSet<string> unvisited = new HashSet<string>();
 
-        const string graphFilePath = "./graph.txt";
+        const string graphFilePath = "C:/Users/Hanan/source/repos/dijkstras algorithm/graph.txt";
 
         static void Main(string[] args)
         {
@@ -38,7 +38,7 @@ namespace cs_dijkstra
             PrintOverview();
 
             var (startNode, destNode) = GetStartAndEnd();
-            
+
             // Set our start node. The start node has to have a value
             // of 0 because we're already there.
             nodeDict[startNode].Value = 0;
@@ -66,10 +66,11 @@ namespace cs_dijkstra
                 using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, 128))
                 {
                     String line;
+                    int cost = 8;
                     while ((line = streamReader.ReadLine()) != null)
                     {
                         var values = line.Split(",");
-                        var (from, to, distance) = (values[0], values[1], double.Parse(values[2]));
+                        var (from, to, distance) = (values[0], values[1], cost);
                         if (!nodeDict.ContainsKey(from)) { nodeDict.Add(from, new Node(from)); }
                         if (!nodeDict.ContainsKey(to)) { nodeDict.Add(to, new Node(to)); }
                         unvisited.Add(from);
@@ -164,7 +165,7 @@ namespace cs_dijkstra
         // printed out.
         private static void PrintShortestPath(string startNode, string destNode)
         {
-            var pathList = new List<String> { destNode } ;
+            var pathList = new List<String> { destNode };
 
             Node currentNode = nodeDict[destNode];
             while (currentNode != nodeDict[startNode])

@@ -1,9 +1,19 @@
+Addis Abeba
+
 Amatave,Kapstaden,8
 Amatave,Kap Guardafui,8
+Bahrel Ghazal
+
 Cairo,Suakin,8
+Congo
+
+Dakar
+
 Darfur,Tripoli,8
 Darfur,Suakin,8
 Darfur,Kabalo,8
+De Kanariske Oer
+
 Dragebjerget,Victoria-Soen,8
 Dragebjerget,Kapstaden,8
 Guld Kysten,Marrakesh,8
@@ -29,8 +39,16 @@ Luanda,Hvalbugten,8
 Marrakesh,Tanger,8
 Marrakesh,Sierra Leone,8
 Marrakesh,Guld Kysten,8
+Mocambique
+
+Omdurman
+
+Sahara
+
 Sierra Leone,Marrakesh,8
 Sierra Leone,St Helena,8
+Slave-Kysten
+
 St. Helena,Sierra Leone,8
 St. Helena,Kapstaden,8
 Suakin,Cairo,8
@@ -38,9 +56,19 @@ Suakin,Darfur,8
 Suakin,Victoria-Soen,8
 Tanger,Marrakesh,8
 Tanger,Tripoli,8
+Timbuktu
+
 Tripoli,Tanger,8
 Tripoli,Guld Kysten,8
 Tripoli,Darfur,8
+Tunis
+
+Victoria Faldene
+
 Victoria-Soen,Suakin,8
 Victoria-Soen,Kap Guardafui,8
 Victoria-Soen,Dragebjerget,8
+Wadai
+
+Zanibar
+

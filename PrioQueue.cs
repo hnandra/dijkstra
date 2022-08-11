@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace cs_dijkstra
+namespace dijkstra
 {
     class PrioQueue : LinkedList<Node>
     {

@@ -1,6 +1,6 @@
 // Author(s): Michael Koeppl
 
-namespace cs_dijkstra
+namespace dijkstra
 {
     class Route
     {
