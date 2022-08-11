@@ -1,8 +1,5 @@
 ﻿// Author(s): Michael Koeppl
 
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Text;
 
 namespace dijkstra
@@ -22,8 +19,11 @@ namespace dijkstra
 
         const string graphFilePath = "./graph.txt";
 
+
         static void Main(string[] args)
         {
+            Parcel parcel = GetParcelSpecification();
+
             try
             {
                 initGraph();
@@ -51,7 +51,22 @@ namespace dijkstra
             CheckNode(queue, destNode);
 
             // Print out the result
-            PrintShortestPath(startNode, destNode);
+            PrintShortestPath(startNode, destNode, parcel);
+        }
+
+        private static Parcel GetParcelSpecification()
+        {
+            Console.WriteLine("Parcel size: [A, B, C]");
+            string size = Console.ReadLine();
+            Console.WriteLine("Parcel weight: [number]");
+            double weight = int.Parse(Console.ReadLine());
+            Console.ReadLine();
+            Console.WriteLine("Parcel type: [Weapons, Cautious parcels, Refrigerated goods]");
+            string type = Console.ReadLine();
+
+
+            Parcel parcel = new Parcel(weight, size, type);
+            return parcel;
         }
 
         private static void initGraph()
@@ -163,7 +178,7 @@ namespace dijkstra
         // Starts with the destination node and basically adds all the nodes'
         // respective previous nodes to a list, which is then reversed and
         // printed out.
-        private static void PrintShortestPath(string startNode, string destNode)
+        private static void PrintShortestPath(string startNode, string destNode, Parcel parcel)
         {
             var pathList = new List<String> { destNode };
 
@@ -179,7 +194,74 @@ namespace dijkstra
             {
                 Console.Write(pathList[i] + (i < pathList.Count - 1 ? " -> " : "\n"));
             }
-            Console.WriteLine("Overall distance: " + nodeDict[destNode].Value);
+
+            var totaRouteTimeCost = nodeDict[destNode].Value;
+            var costPerFlight = totaRouteTimeCost / 8;
+            var parcelCost = CalculateParcelCost(parcel);
+            var deliveryCost = parcelCost * costPerFlight;
+
+
+            Console.WriteLine("Overall cost: " + deliveryCost);
+        }
+
+        private static double CalculateParcelCost(Parcel parcel)
+        {
+            var cost = 0d;
+
+            if (parcel.parcelSize == "A" && parcel.parcelWeight < 1)
+            {
+                cost = cost + 40;
+            }
+            if (parcel.parcelSize == "A" && parcel.parcelWeight is >= 1 and < 5)
+            {
+                cost = cost + 60;
+            }
+            if (parcel.parcelSize == "A" && parcel.parcelWeight >= 5)
+            {
+                cost = cost + 80;
+            }
+
+            if (parcel.parcelSize == "B" && parcel.parcelWeight < 1)
+            {
+                cost = cost + 48;
+            }
+            if (parcel.parcelSize == "B" && parcel.parcelWeight is >= 1 and < 5)
+            {
+                cost = cost + 68;
+            }
+            if (parcel.parcelSize == "B" && parcel.parcelWeight >= 5)
+            {
+                cost = cost + 88;
+            }
+
+            if (parcel.parcelSize == "C" && parcel.parcelWeight < 1)
+            {
+                cost = cost + 80;
+            }
+            if (parcel.parcelSize == "C" && parcel.parcelWeight is >= 1 and < 5)
+            {
+                cost = cost + 100;
+            }
+            if (parcel.parcelSize == "C" && parcel.parcelWeight >= 5)
+            {
+                cost = cost + 120;
+            }
+
+            if (parcel.parcelType == "Weapons")
+            {
+                cost = cost * 2;
+            }
+            if (parcel.parcelType == "Cautious parcels")
+            {
+                cost = cost * 1.75;
+            }
+            if (parcel.parcelType == "Refrigerated goods")
+            {
+                cost = cost * 1.1;
+            }
+
+
+            return cost;
         }
     }
 }
